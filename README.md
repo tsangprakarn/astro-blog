@@ -1,27 +1,63 @@
-# Astro Blog Template for Home K8s (ghcr.io version)
+# Astro Starter Kit: Blog
 
-## วิธีใช้แบบง่ายสุดสำหรับสาย Hobby
-1. npm create astro@latest . -- --template blog --no-git --no-install
-   npm install
-2. เอา 4 ไฟล์นี้ไปวางทับที่ root ของโปรเจค Astro ที่สร้างมา
-   - Dockerfile
-   - nginx.conf
-   - k8s/deployment.yaml (แก้ image เป็น ghcr.io/USERNAME/astro-blog:latest)
-   - .github/workflows/build.yaml
+```sh
+npm create astro@latest -- --template blog
+```
 
-3. git init, git add ., git commit, git push ไป repo ชื่อ astro-blog
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-4. ไปที่ GitHub > Packages > astro-blog > Settings > Change visibility -> Public
+Features:
 
-5. ที่ K8s Master ที่บ้าน:
-   kubectl apply -f k8s/deployment.yaml
+- ✅ Minimal styling (make it your own!)
+- ✅ 100/100 Lighthouse performance
+- ✅ SEO-friendly with canonical URLs and Open Graph data
+- ✅ Sitemap support
+- ✅ RSS Feed support
+- ✅ Markdown & MDX support
 
-6. เพิ่มใน HAProxy 10.8.0.5:
-   frontend http-in
-     acl is_blog hdr(host) -i blog.my.domain
-     use_backend k8s_astro_blog if is_blog
-   backend k8s_astro_blog
-     server master 192.168.1.50:30080 check
+## 🚀 Project Structure
 
-7. เขียนบล็อกใหม่ใน src/content/blog/ แล้ว git push
-   แล้วที่บ้าน: kubectl rollout restart deployment astro-blog
+Inside of your Astro project, you'll see the following folders and files:
+
+```text
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── content/
+│   ├── layouts/
+│   └── pages/
+├── astro.config.mjs
+├── README.md
+├── package.json
+└── tsconfig.json
+```
+
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+
+The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+
+Any static assets, like images, can be placed in the `public/` directory.
+
+## 🧞 Commands
+
+All commands are run from the root of the project, from a terminal:
+
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
+
+## 👀 Want to learn more?
+
+Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+## Credit
+
+This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
