@@ -1,7 +1,9 @@
-FROM node:24 AS builder
+FROM node:22-alpine AS builder
 WORKDIR /app
 COPY package*.json ./
-RUN npm install
+
+RUN npm config set maxsockets 1 && npm ci
+
 COPY . .
 RUN npm run build
 
